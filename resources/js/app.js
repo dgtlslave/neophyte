@@ -22,6 +22,10 @@ Vue.component('home', require('./components/Home'));
 Vue.component('group', require('./components/Group'));
 Vue.component('aspirant', require('./components/Aspirant'));
 Vue.component('resulttable', require('./components/ResultTable'));
+Vue.component('chartline', require('./components/Chartline'));
+Vue.component('report', require('./components/Report'));
+
+
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -42,3 +46,7 @@ export default EventBus;
 const app = new Vue({
     el: '#app'
 });
+
+const CHART = document.getElementById('lineChart');
+
+

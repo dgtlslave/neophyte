@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Aspirant;
+use App\Report;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -27,5 +28,10 @@ class GroupController extends Controller
     public function getAllAspirant(Request $request){
         $result = Aspirant::where('group_id', '=', $request['id'])->get();
         return $result;
+    }
+
+    public function deleteGroup(Request $request){
+        $deleteGroup = Group::where('id', '=', $request->groupId)->delete();
+        return 1;
     }
 }

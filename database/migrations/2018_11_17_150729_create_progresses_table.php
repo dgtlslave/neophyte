@@ -16,9 +16,12 @@ class CreateProgressesTable extends Migration
         Schema::create('progresses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('aspirant_id');
-            $table->integer('operation_id');
+            $table->integer('task_id');
+            $table->integer('group_id');
+            $table->integer('sub_task_id');
             $table->integer('quantity_of_valid');
-            $table->integer('quantity_of_invalid');
+            $table->integer('checked')->default(0);
+            $table->string('check_date')->nullable();
             $table->timestamps();
         });
     }

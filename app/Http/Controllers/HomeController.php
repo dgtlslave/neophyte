@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Group;
+use App\Progress;
 
 class HomeController extends Controller
 {
@@ -39,10 +40,23 @@ class HomeController extends Controller
         return 1;
     }
 
-
+    public function bar(Request $request){
+       
+        $check = Progress::where([
+            ['group_id', '=', $request->groupId],
+            ['sub_task_id', '=', $request->subTaskId]
+        ])->get(['aspirant_id', 'checked', 'quantity_of_valid'])
+          ->groupBy(function($date){
+              return $date->aspirant_id;
+          }); 
+        return $check;  
+    }
 
     public function getAllGroup(){
-        $allGroup = Group::with('aspirant')->get();
-        return $allGroup;
+        $allGroup = Group::with('aspirant', 'progress')->get();
+        // $allGroup = Group::with(['aspirant', 'progress'])->get();
+        // if($allGroup){
+            return $allGroup;
+        // }
     }
 }
